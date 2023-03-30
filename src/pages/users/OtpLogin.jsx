@@ -12,12 +12,12 @@ import { useDispatch } from 'react-redux';
 import { setLogin } from 'state';
 
 const firebaseConfig = {
-    apiKey: process.env.REACT_APP_API_KEY,
-    authDomain: process.env.REACT_APP_AUTH_DOMAIN,
-    projectId: process.env.REACT_APP_PROJECT_ID,
-    storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
-    messagingSenderId: process.env.REACT_APP_MESSAGING_SENDERID,
-    appId: process.env.REACT_APP_APP_ID
+    apiKey: "AIzaSyB8n0pLqDOE48cMlSV6lkms1fR9s9EO-w0",
+    authDomain: "social-media-1-1859a.firebaseapp.com",
+    projectId: "social-media-1-1859a",
+    storageBucket: "social-media-1-1859a.appspot.com",
+    messagingSenderId: "1050661658408",
+    appId: "1:1050661658408:web:dbc1c07e25933c85573a1d"
 };
 
 // Initialize Firebase

@@ -1,13 +1,8 @@
-import React, { useContext, useEffect, useState } from 'react';
-import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
-import Checkbox from '@mui/material/Checkbox';
 import Avatar from '@mui/material/Avatar';
-import PersonAddIcon from '@mui/icons-material/PersonAdd';
-import PersonRemoveIcon from '@mui/icons-material/PersonRemove';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button } from '@mui/material';
 // import { addOrRemoveFriend } from 'api/users';
@@ -17,10 +12,7 @@ import { createChat } from 'api/chat';
 
 
 function Friend({ friend, labelId, isProfile=false }) {
-    const dispatch = useDispatch();
     const user = useSelector(state=> state.user);
-    // const token = useSelector(state=> state.token);
-    // const [currentChat, setCurrentChat] = useState(null)
 
     const handleCreateChat = async()=>{
         let obj = {
@@ -33,7 +25,6 @@ function Friend({ friend, labelId, isProfile=false }) {
         navigate('/chat')
     }
 
-    const currentChat = useSelector(state=> state.currentChat)
     const navigate = useNavigate()
     return (
         <ListItem

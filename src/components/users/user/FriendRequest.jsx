@@ -1,15 +1,10 @@
-import React, { useContext, useEffect, useState } from 'react';
-import List from '@mui/material/List';
+import React from 'react';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
-import Checkbox from '@mui/material/Checkbox';
 import Avatar from '@mui/material/Avatar';
-import PersonAddIcon from '@mui/icons-material/PersonAdd';
-import PersonRemoveIcon from '@mui/icons-material/PersonRemove';
 import { useDispatch, useSelector } from 'react-redux';
-import { Button } from '@mui/material';
 import { friendRequest, acceptRejectRequest } from 'api/users';
 import { setFriends, setRecievedRequests, setSentRequests } from 'state';
 import { Cancel, Check, CheckBoxOutlined, CheckOutlined } from '@mui/icons-material';

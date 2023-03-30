@@ -1,8 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import List from '@mui/material/List';
-import { getFriends, getUserFriendRequests } from 'api/users';
-import FriendRequest from './FriendRequest';
-import { useDispatch, useSelector } from 'react-redux';
+import {useSelector } from 'react-redux';
 import { Typography } from '@mui/material';
 import Friend from './Friend';
 

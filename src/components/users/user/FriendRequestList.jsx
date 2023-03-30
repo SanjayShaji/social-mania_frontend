@@ -1,8 +1,8 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React from 'react';
 import List from '@mui/material/List';
 import { getUserFriendRequests } from 'api/users';
 import FriendRequest from './FriendRequest';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Typography } from '@mui/material';
 
 export default function FriendRequestList({friendRequests, userId}) {

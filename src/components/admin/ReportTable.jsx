@@ -1,4 +1,3 @@
-// import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -9,10 +8,7 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getUsers,reportedPost } from 'api/admin';
-import { IconButton } from '@mui/material';
-import User from './User';
-import { setUsers } from 'state';
+import { getReportedPosts } from 'api/admin';
 import ReportedPost from './ReportedPost';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -32,8 +28,8 @@ export default function ReportTable() {
     const [reportedPosts, setReportedPosts] = useState([]);
     // const users = useSelector((state)=> state.users)
 
-    const getReportedPosts = async () => {
-        const data = await reportedPost(adminToken);
+    const getAllReportedPosts = async () => {
+        const data = await getReportedPosts(adminToken);
         console.log(data);
         setReportedPosts(data)
 
@@ -43,7 +39,7 @@ export default function ReportTable() {
     }
 
     useEffect(() => {
-        getReportedPosts();
+        getAllReportedPosts();
     }, [])
 
 

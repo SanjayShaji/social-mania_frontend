@@ -1,4 +1,4 @@
-const baseUrl = "http://socialmania.site/api"
+const baseUrl = "https://socialmania.site/api"
 
 export async function login(values, onSubmitProps) {
   const loginResponse = await fetch(`${baseUrl}/admin/auth`,

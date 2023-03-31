@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API = axios.create({baseURL: `http://localhost:4000/socket`})
+const API = axios.create({baseURL: `http://socialmania.site/socket`})
 
 export const createChat = (data)=> API.post(`/chat`, data)
 

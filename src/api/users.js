@@ -1,4 +1,4 @@
-const baseUrl = "http://localhost:4000/api"
+const baseUrl = "http://socialmania.site/api"
 
 export async function register(values, onSubmitProps) {
   const registerResponse = await fetch(`${baseUrl}/auth/register`,

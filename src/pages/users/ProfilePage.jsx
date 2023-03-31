@@ -63,7 +63,7 @@ useEffect(() => {
             <Friends 
               friends={friends} isProfile={true}
               />
-              <PostImages/>
+              <PostImages />
 
             </Box>
           </Grid>

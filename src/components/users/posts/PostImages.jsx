@@ -8,7 +8,7 @@ import Skeleton, {SkeletonTheme} from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 import { useInView } from 'react-intersection-observer';
 
-export default function StandardImageList() {
+function PostImages() {
   const posts = useSelector(state=> state.posts)
   const isSmallScreen = useMediaQuery((theme) => theme.breakpoints.down('sm'));
 
@@ -66,3 +66,5 @@ export default function StandardImageList() {
   );
 }
 
+
+export default PostImages

@@ -1,14 +1,7 @@
-
-
-import { Box, Button, FormControl, FormControlLabel, FormLabel, IconButton, InputBase, Modal, Radio, RadioGroup, Typography, useTheme } from '@mui/material';
-import React, { useContext, useEffect, useState } from 'react'
-// import Wrapper from './Wrapper';
-import Dropzone from "react-dropzone";
-import { AutoStories, DeleteOutlined, EditOutlined, Image, PhotoLibrary, VideoLibrary } from '@mui/icons-material';
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react'
+import { Box, Button, FormControl, FormControlLabel, FormLabel, Modal, Radio, RadioGroup } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
-import { setPost, setPosts } from 'state';
-import { createPost, reportPost, updatePost } from 'api/users';
+import { reportPost } from 'api/users';
 
 
 

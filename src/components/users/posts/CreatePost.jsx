@@ -58,15 +58,10 @@ function EditPost({ isEdit = false, setIsUpdate, post = false, isUser = true }) 
 
   useEffect(() => {
     if (isEdit && post) {
-      try {
-        setImage(post.images[0]);
-        setFile(post.images[0]);
+        setImage(post.files[0]);
+        setFile(post.files[0]);
         setPostContent(post.content)
         handleOpen();
-
-      } catch (error) {
-        console.log(error)
-      }
     }
   }, [isEdit]);
 

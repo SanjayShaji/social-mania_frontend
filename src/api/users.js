@@ -57,6 +57,20 @@ export async function getUser(userId, token) {
   console.log(response);
   return response.json();
 }
+
+export async function getPostImages(userId, token) {
+  console.log(userId);
+  const response = await fetch(`${baseUrl}/posts/${userId}/images`, {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json'
+    }
+  });
+  console.log(response);
+  return response.json();
+}
+
 export async function createProfile(formData, token) {
   console.log(formData);
   const response = await fetch(`${baseUrl}/users/profile`, {

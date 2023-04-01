@@ -4,7 +4,7 @@ import { Box, Grid, Paper, styled, useMediaQuery } from '@mui/material'
 import Posts from 'components/users/posts/Posts';
 import { useDispatch, useSelector } from 'react-redux';
 import Friends from 'components/users/user/Friends';
-import {getFriends, getUser} from 'api/users'
+import {getFriends, getUser, getPostImages} from 'api/users'
 import { setFriends} from 'state';
 import UserProfile from 'components/users/user/UserProfile';
 import PostImages from 'components/users/posts/PostImages';
@@ -15,6 +15,7 @@ function ProfilePage() {
   const user = useSelector(state => state.user)
   const [userData, setUserData] = useState(null)
   const [friends, setFriends] = useState([])
+  const [postImages, setPostImages] = useState([])
   // const friends = useSelector(state => state.user.friends);
   const isNonMobileScreens = useMediaQuery("(min-width: 900px)")
   const token = useSelector(state=> state.token)
@@ -38,8 +39,15 @@ useEffect(() => {
     setFriends(userFriends);
   }
 
+  async function fetchPostImages() {
+    const postImages = await getPostImages(userId, token);
+    console.log(postImages);
+    setPostImages(postImages);
+  }
+
   fetchUser();
   fetchFriends();
+  fetchPostImages();
 }, []);
 
 
@@ -63,7 +71,9 @@ useEffect(() => {
             <Friends 
               friends={friends} isProfile={true}
               />
-              <PostImages />
+              <PostImages 
+              postImages={postImages}
+              />
 
             </Box>
           </Grid>

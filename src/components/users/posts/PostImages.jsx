@@ -39,9 +39,9 @@ function PostImages({postImages}) {
         <ImageListItem  key={post._id}>
       {loading && <img
         onLoad={onLoad}
-        ref = {ref}
-        src={inView ? post.files[0] : ""}
-        sx={{ objectFit:"contain",  height: "100%" }}
+        src={post.files[0]}
+        sx={{ objectFit:"contain",  
+        height: "100%" }}
         srcset={post.files[0]}
         alt="image"
         loading="lazy"

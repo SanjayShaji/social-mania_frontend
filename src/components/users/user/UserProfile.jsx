@@ -46,9 +46,10 @@ function UserProfile({ userData, isUser = false }) {
   const [isCover, setIsCover] = useState(false)
 
   const { palette } = useTheme();
-  // useEffect(() => {
-  //   console.log("tokenData" + token);
-  // })
+  useEffect(() => {
+    console.log("tokenData" + token);
+    console.log(isUser);
+  })
 
   const handleProfilePost = async () => {
     // e.preventDefault()
@@ -92,14 +93,14 @@ function UserProfile({ userData, isUser = false }) {
   return (
 
     <Box sx={{ textAlign: 'center' }}>
-      {isUser && user.profileImage &&
+      {isUser  &&
         <Box sx={{ position: "relative" }}>
           <Avatar
             onClick={() => {
               setIsProfile(true)
               handleOpen()
             }}
-            alt="User Name" src={user.profileImage}
+            alt="User Name" src={user?.profileImage}
             sx={{"&:hover": { cursor: "pointer" },backgroundColor: "white", width: 128, height: 128, position: "absolute", bottom: -20, left: 300 }} />
           <Card sx={{ height: "300px" }}>
             <CardMedia
@@ -108,7 +109,8 @@ function UserProfile({ userData, isUser = false }) {
                 handleOpen()
               }}
               sx={{ "&:hover": { cursor: "pointer" }, backgroundColor: "grey", objectFit: "contain", height: "100%" }}
-              component="img" image={user.coverImage} />
+              component="img" image={user?.coverImage} 
+              />
           </Card>
         </Box>
       }
@@ -117,12 +119,13 @@ function UserProfile({ userData, isUser = false }) {
         <Box sx={{ position: "relative" }}>
           <Avatar
 
-            alt="User Name" src={userData.profileImage}
+            alt="User Name" src={userData?.profileImage}
             sx={{backgroundColor: "white", width: 128, height: 128, position: "absolute", bottom: -20, left: 300 }} />
           <Card sx={{ height: "300px" }}>
             <CardMedia
               sx={{ backgroundColor: "grey", objectFit: "contain", height: "100%" }}
-              component="img" image={userData.coverImage} />
+              component="img" image={userData?.coverImage} 
+              />
           </Card>
         </Box>
       }

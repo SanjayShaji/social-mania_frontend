@@ -22,6 +22,27 @@ function PostImages({postImages}) {
     threshold: 0
   })
 
+  // const renderMedia = (post) => {
+  //   if (post.files[0].endsWith('.jpg') || post.files[0].endsWith('.jpeg') || post.files[0].endsWith('.png')) {
+  //     return <ImageListItem  key={post._id}>
+  //     {loading && <img
+  //       onLoad={onLoad}
+  //       ref = {ref}
+  //       src={inView ? post.files[0] : ""}
+  //       // sx={{ height: loading ? `${height}px` : 'auto' }}
+  //       sx={{ objectFit:"contain",  height: "100%" }}
+  //       srcset={post.files[0]}
+  //       alt="image"
+  //       loading="lazy"
+  //     /> || <SkeletonTheme baseColor="white"
+  //     highlightColor="grey"
+  //     borderRadius="0.5rem"
+  //     duration={4}>
+  //     <Skeleton height={150} />
+  //     </SkeletonTheme>}   
+  //   </ImageListItem>
+  //   }
+  // }
   
   useEffect(()=>{
     console.log(height)
@@ -35,14 +56,18 @@ function PostImages({postImages}) {
       <Typography sx={{textAlign: "center", m:2}}>Posts</Typography>
 
     <ImageList  sx={{ width: "85%", height : 'auto' }} cols={isSmallScreen ? 1 : 2} >
-      {postImages && postImages.map((post) => (
+      {postImages && postImages?.map((post) => (
+        // <>
+        // {renderMedia(post)}
+        // </>
         <ImageListItem  key={post._id}>
       {loading && <img
         onLoad={onLoad}
-        src={post.files[0]}
-        sx={{ objectFit:"contain",  
-        height: "100%" }}
-        srcset={post.files[0]}
+        ref = {ref}
+        src={inView ? post.files[0] : ""}
+        // sx={{ height: loading ? `${height}px` : 'auto' }}
+        sx={{ objectFit:"contain",  height: "100%" }}
+        // srcset={post.files[0]}
         alt="image"
         loading="lazy"
       /> || <SkeletonTheme baseColor="white"

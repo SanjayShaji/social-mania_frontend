@@ -154,7 +154,7 @@ function EditPost({ isEdit = false, setIsUpdate, post = false, isUser = true }) 
     // <Wrapper>
     <Box sx={{ textAlign: 'center' }}>
 
-      {!isEdit && isUser && <FlexBetween sx={{ m: 4, paddingLeft: "100px", paddingRight: "100px", border: "3px double pink" }}>
+      {!isEdit && isUser && <FlexBetween sx={{ m: 4, paddingLeft: "10%", paddingRight: "10%", border: "3px double pink" }}>
 
         <IconButton onClick={handleOpen}>
           <PhotoLibrary sx={{ fontSize: "35px" }} />

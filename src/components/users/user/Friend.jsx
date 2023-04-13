@@ -28,7 +28,7 @@ function Friend({ friend, labelId, isProfile=false }) {
     const navigate = useNavigate()
     return (
         <ListItem
-            key={friend._id}
+            key={friend?._id}
             secondaryAction={isProfile == false &&
                 <Button onClick= {handleCreateChat}>
                     chat
@@ -41,14 +41,14 @@ function Friend({ friend, labelId, isProfile=false }) {
                 
                     <Avatar
                     onClick={()=>{
-                        navigate(`/profile/${friend._id}`)
+                        navigate(`/profile/${friend?._id}`)
                     }}
-                        alt={`Avatar n°${friend.firstName}`}
-                        src={friend.profileImage}
+                        // alt={`Avatar n°${friend.firstName}`}
+                        src={friend?.profileImage}
                     />
                     
                 </ListItemAvatar>
-                <ListItemText id={labelId} primary={friend.firstName} />
+                <ListItemText id={labelId} primary={friend?.firstName} />
             </ListItemButton>
         </ListItem>
 

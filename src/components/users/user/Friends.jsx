@@ -24,7 +24,7 @@ export default function Friends({friends, isChat=false, isProfile =false}) {
     return (
         <List dense sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
             <Typography sx={{textAlign: "center", m:2}}>Friends</Typography>
-            {friends.map((friend) => {
+            {friends?.map((friend) => {
                 const labelId = `checkbox-list-secondary-label-${friend.firstName}`;
                 return (
                     <Friend

@@ -13,17 +13,21 @@ import {
     Card
 } from "@mui/material";
 
-import { Search, Message, DarkMode, LightMode, Notifications, Help, Menu, Close } from "@mui/icons-material"
+import { Search, Message, DarkMode, LightMode, Notifications, Help, Menu, Close, VideoCall, Explore, AccountBox, Chat } from "@mui/icons-material"
 import { useDispatch, useSelector } from "react-redux";
-import { setMode, setLogout } from "state";
+import { setMode, setLogout, setUsers } from "state";
 import { useNavigate } from "react-router-dom";
 import FlexBetween from "components/common/FlexBetweeen";
+import { getUsers, searchUser } from "api/users";
 
 const Navbar = () => {
     const [isMobileMenuToggled, setIsMobileMenuToggled] = useState(false);
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const user = useSelector((state) => state.user);
+    const token = useSelector((state) => state.token);
+    // const users = useSelector((state)=> state.users)
+    const [userData, setUserData] = useState("");
     const isNonMobileScreens = useMediaQuery("(min-width: 1000px)");
 
     const theme = useTheme();
@@ -32,6 +36,15 @@ const Navbar = () => {
     const background = theme.palette.background.default;
     const primaryLight = theme.palette.primary.light;
     const alt = theme.palette.background.alt;
+
+    const handleSearch = async()=>{
+        const data = await searchUser(user._id, userData, token)
+        dispatch(setUsers({
+            users: data.users
+        }))
+        setUserData("")
+        navigate('/usersList/true')
+    }
 
     const fullName = `${user.firstName} ${user.lastName}`;
     return (
@@ -55,30 +68,34 @@ const Navbar = () => {
 
                 {isNonMobileScreens && (
                     <FlexBetween backgroundColor={neutralLight} borderRadius="9px" gap="3rem" padding="0.1rem 1.5rem">
-                        <InputBase placeholder="Search..." />
+                        <InputBase 
+                        value = {userData}
+                        onChange = {(e)=>{
+                            setUserData(e.target.value)
+                        }}
+                        placeholder="Search..." />
                         <IconButton>
-                            <Search />
+                            <Search  onClick={handleSearch}/>
                         </IconButton>
                     </FlexBetween>
                 )}
+
             </FlexBetween>
             
             {/* Desktop nav */}
             {isNonMobileScreens ? (
-                <FlexBetween gap="1rem">
-                    <Button onClick={()=>{navigate(`/profile/${user._id}`)}}>profile</Button>
-                    <Button onClick={()=>{navigate('/usersList')}}>Explore</Button>
-                    <Button onClick={()=>{navigate('/chat')}}>Chat</Button>
-                    <Button onClick={()=>{navigate('/video-call')}}>Video</Button>
-
+                <FlexBetween gap="2rem" sx={{cursor: "pointer", fontSize: "25px"}}>
                     <IconButton onClick={() => dispatch(setMode())}>
                         {theme.palette.mode === "dark" ? (
-                            <DarkMode sx={{ fontSize: "25px" }} />
+                            <DarkMode />
                         ) : (<LightMode />)}
                     </IconButton>
-                    <Message />
-                    <Notifications />
-                    <Help />
+                    <IconButton onClick={()=>{navigate('/usersList/false')}}><Explore/></IconButton>
+                    <IconButton onClick={()=>{navigate('/chat')}}><Chat /></IconButton>
+                    <IconButton onClick={()=>{navigate('/video-call')}}><VideoCall sx={{fontSize: "30px"}} /></IconButton>
+                    <IconButton onClick={()=>{navigate(`/profile/${user._id}`)}}><AccountBox /></IconButton>
+                    {/* <Notifications /> */}
+                    <IconButton><Help /></IconButton>
                     <FormControl variant="standard" value={fullName}>
                         <Select
                             value={fullName}
@@ -128,15 +145,18 @@ const Navbar = () => {
                     </Box>
 
                     {/* menu items */}
-                    <FlexBetween gap="3rem" display="flex" flexDirection="column" justifyContent="center" alignItems="center">
+                    <FlexBetween sx={{cursor: "pointer", fontSize: "25px"}} gap="3rem" display="flex" flexDirection="column" justifyContent="center" alignItems="center">
                     <IconButton onClick={() => dispatch(setMode())}>
                         {theme.palette.mode === "dark" ? (
                             <DarkMode sx={{ fontSize: "25px" }} />
                         ) : (<LightMode />)}
                     </IconButton>
-                    <Message />
-                    <Notifications />
-                    <Help />
+                    <IconButton onClick={()=>{navigate('/usersList')}}><Explore /></IconButton>
+                    <IconButton onClick={()=>{navigate('/chat')}}><Chat /></IconButton>
+                    <IconButton onClick={()=>{navigate('/video-call')}}><VideoCall /></IconButton>
+                    <IconButton onClick={()=>{navigate(`/profile/${user._id}`)}}><AccountBox /></IconButton>
+                    {/* <Notifications /> */}
+                    <IconButton><Help /></IconButton>
                     
                     <FormControl variant="standard" value={fullName}>
                         <Select

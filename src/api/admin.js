@@ -32,6 +32,18 @@ export async function getUser(userId, token) {
   });
   return res.json();
 }
+
+export async function searchUser(searchName, token) {
+  const res = await fetch(`${baseUrl}/admin/users/search/${searchName}`, {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json'
+    }
+  });
+  return res.json();
+}
+
 export async function getReportedPosts(token) {
   const res = await fetch(`${baseUrl}/admin/reported-posts`, {
     method: "GET",

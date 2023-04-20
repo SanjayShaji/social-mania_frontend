@@ -33,7 +33,7 @@ function ChatPage() {
   useEffect(() => {
     const getChats = async () => {
       try {
-        const { data } = await userChats(user._id, token);
+        const data = await userChats(user._id, token);
         console.log(data);
         // dispatch(setChats({
         //   chats: data
@@ -72,7 +72,7 @@ function ChatPage() {
 
 
   const fetchMessages = async (chat) => {
-    const { data } = await getMessages(chat._id, token);
+    const data = await getMessages(chat._id, token);
     console.log(data)
     // setMessages(data)
     dispatch(setMessages({

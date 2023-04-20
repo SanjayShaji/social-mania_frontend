@@ -43,7 +43,7 @@ const Navbar = () => {
             users: data.users
         }))
         setUserData("")
-        navigate('/usersList/true')
+        navigate('/explore/true')
     }
 
     const fullName = `${user.firstName} ${user.lastName}`;
@@ -90,7 +90,7 @@ const Navbar = () => {
                             <DarkMode />
                         ) : (<LightMode />)}
                     </IconButton>
-                    <IconButton onClick={()=>{navigate('/usersList/false')}}><Explore/></IconButton>
+                    <IconButton onClick={()=>{navigate('/explore/false')}}><Explore/></IconButton>
                     <IconButton onClick={()=>{navigate('/chat')}}><Chat /></IconButton>
                     <IconButton onClick={()=>{navigate('/video-call')}}><VideoCall sx={{fontSize: "30px"}} /></IconButton>
                     <IconButton onClick={()=>{navigate(`/profile/${user._id}`)}}><AccountBox /></IconButton>
@@ -151,7 +151,7 @@ const Navbar = () => {
                             <DarkMode sx={{ fontSize: "25px" }} />
                         ) : (<LightMode />)}
                     </IconButton>
-                    <IconButton onClick={()=>{navigate('/usersList')}}><Explore /></IconButton>
+                    <IconButton onClick={()=>{navigate('/explore/false')}}><Explore /></IconButton>
                     <IconButton onClick={()=>{navigate('/chat')}}><Chat /></IconButton>
                     <IconButton onClick={()=>{navigate('/video-call')}}><VideoCall /></IconButton>
                     <IconButton onClick={()=>{navigate(`/profile/${user._id}`)}}><AccountBox /></IconButton>

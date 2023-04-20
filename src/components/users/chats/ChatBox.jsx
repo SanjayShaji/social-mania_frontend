@@ -58,7 +58,7 @@ function ChatBox({ chat, currentUser, setSendMessage, receivedMessage }) {
         const receiverId = receiver._id
         setSendMessage({ ...message, receiverId })
 
-        const { data } = await addMessage(message, token);
+        const data = await addMessage(message, token);
         dispatch(setMessages({
             messages: [...messages, data]
         }))

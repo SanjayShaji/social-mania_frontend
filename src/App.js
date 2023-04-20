@@ -37,7 +37,7 @@ function App() {
             <Route element={isAuth ? <UserLayout /> : <Navigate to="/auth" />}>
               <Route path="/" element={isAuth ? <HomePage /> : <Navigate to="/auth" />} />
               <Route path="/profile/:userId" element={isAuth ? <ProfilePage /> : <Navigate to="/auth" />} />
-              <Route path="/usersList" element={isAuth ? <UsersList /> : <Navigate to="/auth" />} />
+              <Route path="/explore/:search" element={isAuth ? <UsersList /> : <Navigate to="/auth" />} />
               <Route path="/chat" element={isAuth ? <ChatPage /> : <Navigate to="/auth" />} />
               <Route path="/video-call" element={isAuth ? <VideoCall /> : <Navigate to="/auth" />} />
               <Route path="/room/:roomId" element={isAuth ? <RoomPage /> : <Navigate to="/auth" />} />

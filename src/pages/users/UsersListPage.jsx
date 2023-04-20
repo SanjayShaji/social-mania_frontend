@@ -2,48 +2,38 @@ import { Box, Button, Grid, Paper, styled, TextField, useMediaQuery } from '@mui
 import React, { useContext, useEffect, useState } from 'react'
 import { getUsers, searchUser } from 'api/users'
 import Users from 'components/users/user/Users'
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import FriendRequestList from 'components/users/user/FriendRequestList';
 import Friends from 'components/users/user/Friends';
+import { setUsers } from 'state';
+import { useParams } from 'react-router-dom';
 
 function UsersListPage() {
     const isNonMobileScreens = useMediaQuery("(min-width: 1000px)")
-
-    const [users, setUsers] = useState([]);
+    const dispatch = useDispatch()
+    const {search} = useParams()
     const user = useSelector(state => state.user)
+    const users = useSelector(state => state.users)
     const token = useSelector(state => state.token)
     const friends = useSelector(state => state.user.friends)
     const friendRequests = useSelector(state => state.user.recievedFriendRequests)
-    const [searchText, setSearchText] = useState("");
-    // const [searchResults, setSearchResults] = useState([]);
+
 
     useEffect(() => {
         const usersFn = async () => {
             console.log(user._id);
             const usersData = await getUsers(user._id, token);
             console.log(usersData.users);
-            setUsers(usersData.users);
+            dispatch(setUsers({
+                users: usersData.users
+            }))
         }
         console.log(users);
-        const userSearch = async()=>{
-            const usersData = await searchUser(user._id, searchText, token);
-            setUsers(usersData.users)
+        if(search == "false"){
+            usersFn()
         }
-        if(searchText){
-            userSearch()
-        }else{
-            usersFn();
-        }
-    }, [searchText])
+    }, [search])
 
-    // const handleSearch = async (e) => {
-    //     e.preventDefault();
-    //     const response = await searchUser(searchText, token);
-    //     console.log("search user")
-    //     console.log(response)
-    //     console.log("search user")
-    //     setSearchResults(response.users)
-    // }
 
     const Item = styled(Paper)(({ theme }) => ({
         backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -66,18 +56,8 @@ function UsersListPage() {
 
                     </Item>
                 </Grid>}
-                <Grid item xs={12} md={6} >
-                    <Box sx={{ marginTop: "70px" }}>
-                            {/* <form onSubmit={handleSearch}> */}
-                                <TextField
-                                    type="text"
-                                    placeholder='search users'
-                                    value={searchText}
-                                    onChange={(e) => setSearchText(e.target.value)}
-                                />
-                                {/* <button type='submit'>Search</button> */}
-                            {/* </form> */}
-                        </Box>
+                <Grid item xs={12} md={6} sx={{ marginTop: "60px" }}>
+
                     <Grid container >
 
                         {users.map((user, i) => (
@@ -89,14 +69,6 @@ function UsersListPage() {
                             </Grid>
                         ))}
 
-                        {/* {searchResults && searchResults.map((user, i) => (
-                            <Grid item xs={12} sm={4} md={4} sx={{ marginTop: "70px" }}>
-                                <Users
-                                    key={user._id}
-                                    userFriend={user}
-                                />
-                            </Grid>
-                    ))} */}
                     </Grid>
                 </Grid>
                 {isNonMobileScreens && <Grid item xs={4} md={3}>

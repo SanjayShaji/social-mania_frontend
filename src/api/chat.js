@@ -1,11 +1,54 @@
-import axios from 'axios';
 
-const API = axios.create({baseURL: `https://socialmania.site/socket`})
+const baseUrl = `https://socialmania.site/socket`
 
-export const createChat = (data)=> API.post(`/chat`, data)
+export async function createChat(obj, token) {
+    console.log(obj);
+    const response = await fetch(`${baseUrl}/chat`, {
+        method: "POST",
+        headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(obj)
+    });
+    return response.json();
+}
 
-export const userChats = (id)=> API.get(`/chat/${id}`)
 
-export const getMessages = (id)=> API.get(`/message/${id}`)
+export async function userChats(id, token) {
 
-export const addMessage = (data) => API.post('/message/', data)
+    const res = await fetch(`${baseUrl}/chat/${id}`, {
+        method: "GET",
+        headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json'
+        }
+    });
+    return res.json();
+}
+
+export async function getMessages(id, token) {
+
+    const res = await fetch(`${baseUrl}/message/${id}`, {
+        method: "GET",
+        headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json'
+        }
+    });
+    return res.json();
+}
+
+
+export async function addMessage(obj, token) {
+    console.log(obj);
+    const response = await fetch(`${baseUrl}/message`, {
+        method: "POST",
+        headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(obj)
+    });
+    return response.json();
+}

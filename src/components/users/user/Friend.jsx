@@ -13,13 +13,14 @@ import { createChat } from 'api/chat';
 
 function Friend({ friend, labelId, isProfile=false }) {
     const user = useSelector(state=> state.user);
+    const token = useSelector(state=> state.token);
 
     const handleCreateChat = async()=>{
         let obj = {
             senderId : user._id,
             receiverId : friend._id
         }
-        const create = await createChat(obj);
+        const create = await createChat(obj, token);
         console.log(create);
         
         navigate('/chat')
